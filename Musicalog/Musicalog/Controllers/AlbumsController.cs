@@ -36,7 +36,7 @@ namespace Musicalog.Controllers
         /// </summary>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<AlbumDto>>> Get()  // TODO: filter criteria
+        public async Task<ActionResult<List<AlbumDto>>> GetAll()  // TODO: filter criteria
         {
             var query = new GetAllAlbumsQuery();
             return Ok(await _getAllAlbumsRequestHandler.HandleAsync(query));
@@ -49,7 +49,7 @@ namespace Musicalog.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<ActionResult<AlbumDto>> Post([FromBody] AddAlbumCommand command)
+        public async Task<ActionResult<AlbumDto>> Add([FromBody] AddAlbumCommand command)
         {
             return Ok(await _addAlbumRequestHandler.HandleAsync(command));
         }
@@ -62,9 +62,9 @@ namespace Musicalog.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<ActionResult> Put(int id, [FromBody] UpdateAlbumCommand command)
+        public async Task<ActionResult> Update(int albumId, [FromBody] UpdateAlbumCommand command)
         {
-            command.AlbumId = id;
+            command.AlbumId = albumId;
             await _updateAlbumCommandHandler.HandleAsync(command);
             return NoContent();
         }
@@ -75,7 +75,7 @@ namespace Musicalog.Controllers
         [HttpDelete("{albumId}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<ActionResult> Delete(int albumId)
+        public async Task<ActionResult> Remove(int albumId)
         {
             await _removeAlbumCommandHandler.HandleAsync(new RemoveAlbumCommand(albumId));
             return NoContent();
