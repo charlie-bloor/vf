@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Albums\Commands" />
+      <Folder Include="Albums\Queries" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Musicalog.Data\Musicalog.Data.csproj" />
+      <ProjectReference Include="..\Musicalog.Domain\Musicalog.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Scrutor" Version="3.3.0" />
+    </ItemGroup>
+
+</Project>
