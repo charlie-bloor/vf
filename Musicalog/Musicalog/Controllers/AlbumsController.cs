@@ -54,9 +54,14 @@ namespace Musicalog.Controllers
             return Ok(await _addAlbumRequestHandler.HandleAsync(command));
         }
 
-        // PUT: api/albums/5
+        /// <summary>
+        /// Update an album
+        /// </summary>
         [HttpPut("{albumId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> Put(int id, [FromBody] UpdateAlbumCommand command)
         {
             command.AlbumId = id;
@@ -64,6 +69,9 @@ namespace Musicalog.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Remove an album
+        /// </summary>
         [HttpDelete("{albumId}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

@@ -29,6 +29,7 @@ namespace Musicalog
         {
             services.AddControllers();
             services.AddConverters();
+            services.AddValidators();
             services.AddDataAccess("Data Source=localhost;Initial Catalog=Musicalog;User Id=sa; Password=someThingComplicated1234;");
             services.AddCoreServices();
             services.AddHandlers();

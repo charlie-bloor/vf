@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Musicalog.Core.Services;
 
@@ -20,13 +21,11 @@ namespace Musicalog.Core.Extensions
             return services;
         }
 
-        // public static IServiceCollection AddValidators(this IServiceCollection services)
-        // {
-        //     // Register all validators with the default (transient) lifetime
-        //     services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly(), ServiceLifetime.Singleton);
-        //
-        //     return services;
-        // }
+        public static IServiceCollection AddValidators(this IServiceCollection services)
+        {
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly(), ServiceLifetime.Singleton);
+            return services;
+        }
 
         public static IServiceCollection AddConverters(this IServiceCollection services)
         {
