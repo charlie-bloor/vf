@@ -59,7 +59,7 @@ namespace Musicalog.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> Put(int id, [FromBody] UpdateAlbumCommand command)
         {
-            command.Id = id;
+            command.AlbumId = id;
             await _updateAlbumCommandHandler.HandleAsync(command);
             return NoContent();
         }

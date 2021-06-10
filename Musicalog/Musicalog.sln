@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Musicalog.Core", "Musicalog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Musicalog.Core.Tests", "Musicalog.Core.Tests\Musicalog.Core.Tests.csproj", "{BB15DFD1-2A35-4DDC-92EB-3B0761943AB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Musicalog.TestUtilities", "Musicalog.TestUtilities\Musicalog.TestUtilities.csproj", "{3C7A1FD9-6E1C-49BF-B04C-4CBEBB3C461B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{BB15DFD1-2A35-4DDC-92EB-3B0761943AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB15DFD1-2A35-4DDC-92EB-3B0761943AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB15DFD1-2A35-4DDC-92EB-3B0761943AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C7A1FD9-6E1C-49BF-B04C-4CBEBB3C461B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C7A1FD9-6E1C-49BF-B04C-4CBEBB3C461B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C7A1FD9-6E1C-49BF-B04C-4CBEBB3C461B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7A1FD9-6E1C-49BF-B04C-4CBEBB3C461B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

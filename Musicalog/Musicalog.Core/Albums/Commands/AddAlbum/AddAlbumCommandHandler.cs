@@ -5,6 +5,7 @@ using Musicalog.Domain;
 
 namespace Musicalog.Core.Albums.Commands.AddAlbum
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class AddAlbumCommandHandler : IRequestHandler<AddAlbumCommand, AlbumDto>
     {
         private readonly IAlbumService _albumService;

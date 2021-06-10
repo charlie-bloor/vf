@@ -7,6 +7,7 @@ using Musicalog.Domain;
 
 namespace Musicalog.Core.Albums.Queries.GetAllAlbums
 {
+    // ReSharper disable once UnusedType.Global
     public class GetAllAlbumsQueryHandler : IRequestHandler<GetAllAlbumsQuery, List<AlbumDto>>
     {
         private readonly IAlbumRepository _albumRepository;

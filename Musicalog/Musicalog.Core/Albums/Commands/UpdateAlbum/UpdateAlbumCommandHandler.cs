@@ -1,14 +1,30 @@
 using System.Threading.Tasks;
-using Musicalog.Core.Albums.Commands.RemoveAlbum;
-using Musicalog.Core.Albums.Dtos;
+using Musicalog.Core.Services;
+using Musicalog.Data.Repositories;
+using Musicalog.Domain;
 
 namespace Musicalog.Core.Albums.Commands.UpdateAlbum
 {
+    // ReSharper disable once UnusedType.Global
     public class UpdateAlbumCommandHandler : IRequestHandler<UpdateAlbumCommand>
     {
-        public Task HandleAsync(UpdateAlbumCommand request)
+        private readonly IAlbumRepository _albumRepository;
+        private readonly IAlbumService _albumService;
+        private readonly IUpdater<UpdateAlbumCommand, Album> _albumUpdater;
+
+        public UpdateAlbumCommandHandler(IAlbumRepository albumRepository,
+                                         IAlbumService albumService,
+                                         IUpdater<UpdateAlbumCommand, Album> albumUpdater)
         {
-            throw new System.NotImplementedException();
+            _albumRepository = albumRepository;
+            _albumService = albumService;
+            _albumUpdater = albumUpdater;
+        }
+        public async Task HandleAsync(UpdateAlbumCommand request)
+        {
+            var album = await _albumRepository.SingleAsync(request.AlbumId);
+            _albumUpdater.Update(request, album);
+            await _albumService.UpdateAsync(album);
         }
     }
 }

@@ -1,11 +1,14 @@
 using Musicalog.Core.Albums.Commands.AddAlbum;
+using Musicalog.Core.Albums.Commands.UpdateAlbum;
 using Musicalog.Core.Albums.Dtos;
 using Musicalog.Domain;
 
 namespace Musicalog.Core.Albums.Converters
 {
+    // ReSharper disable once UnusedType.Global
     public class AlbumConverter : IConverter<AddAlbumCommand, Album>,
-                                  IConverter<Album, AlbumDto>
+                                  IConverter<Album, AlbumDto>,
+                                  IUpdater<UpdateAlbumCommand, Album>
     {
         public Album Convert(AddAlbumCommand value)
         {
@@ -27,6 +30,13 @@ namespace Musicalog.Core.Albums.Converters
                 Title = value.Title,
                 ArtistName = value.ArtistName
             };
+        }
+
+        public void Update(UpdateAlbumCommand source, Album target)
+        {
+            target.Stock = source.Stock;
+            target.Title = source.Title;
+            target.ArtistName = source.ArtistName;
         }
     }
 }

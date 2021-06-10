@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Moq.AutoMock" Version="3.0.0-ci0170" />
+      <PackageReference Include="NUnit" Version="3.13.2" />
+    </ItemGroup>
+
+</Project>
