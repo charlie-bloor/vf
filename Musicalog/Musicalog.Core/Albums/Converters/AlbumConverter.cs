@@ -14,7 +14,6 @@ namespace Musicalog.Core.Albums.Converters
         {
             return new Album
             {
-                Id = value.Id,
                 Stock = value.Stock,
                 Title = value.Title,
                 ArtistName = value.ArtistName

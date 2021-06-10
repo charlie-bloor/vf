@@ -1,12 +1,7 @@
 namespace Musicalog.Core.Albums.Commands.AddAlbum
 {
     public class AddAlbumCommand
-    {        
-        /// <summary>
-        /// The ID of the Album
-        /// </summary>
-        public int Id { get; set; }
-        
+    {
         /// <summary>
         /// The Title of the Album
         /// </summary>

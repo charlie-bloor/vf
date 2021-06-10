@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Musicalog.Core.Extensions;
 using Musicalog.Data.Extensions;
 
@@ -33,6 +26,15 @@ namespace Musicalog
             services.AddDataAccess("Data Source=localhost;Initial Catalog=Musicalog;User Id=sa; Password=someThingComplicated1234;");
             services.AddCoreServices();
             services.AddHandlers();
+            
+            services.AddOpenApiDocument((settings, serviceProvider) =>
+            {
+                settings.Title = "Musicalog API";
+
+                // Add the FluentValidation schema processor
+                // var fluentValidationSchemaProcessor = serviceProvider.GetService<FluentValidationSchemaProcessor>();
+                //settings.SchemaProcessors.Add(fluentValidationSchemaProcessor);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +44,7 @@ namespace Musicalog
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -50,6 +52,9 @@ namespace Musicalog
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
         }
     }
 }
