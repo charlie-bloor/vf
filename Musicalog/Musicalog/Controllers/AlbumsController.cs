@@ -32,7 +32,7 @@ namespace Musicalog.Controllers
         }
         
         /// <summary>
-        /// Get all albums
+        /// Get albums by Artist and Title
         /// </summary>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
