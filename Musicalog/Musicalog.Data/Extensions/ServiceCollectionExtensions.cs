@@ -15,8 +15,6 @@ namespace Musicalog.Data.Extensions
                 o.UseSqlServer(connectionString);
             });
 
-            //services.AddSingleton<IPager, Pager>();
-
             var executingAssembly = Assembly.GetExecutingAssembly();
 
             services.Scan(scan =>
@@ -26,19 +24,7 @@ namespace Musicalog.Data.Extensions
                     .AsImplementedInterfaces()
                     .WithTransientLifetime();
             });
-
-            // services.Scan(scan =>
-            // {
-            //     scan.FromAssemblies(executingAssembly)
-            //         .AddClasses(classes => classes.AssignableToAny(typeof(IConverter<,>),
-            //                                                        typeof(IConverter<,,>),
-            //                                                        typeof(IConverter<,,,>),
-            //                                                        typeof(IConverter<,,,,>),
-            //                                                        typeof(IConverter<,,,,,>)))
-            //         .AsImplementedInterfaces()
-            //         .WithTransientLifetime();
-            // });
-
+            
             return services;
         }
     }
