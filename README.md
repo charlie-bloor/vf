@@ -10,6 +10,7 @@
    ```
    Musicalog\Musicalog.Data\SqlScripts\CreateDatabase.sql
    ```
+
 1. **Test harness**
 
    When the main `Musicalog` project is running a Swagger UI is available here:
@@ -30,21 +31,26 @@
    |`Musicalog.Domain`|Class Library containing entity types|
    |`Musicalog.TestUtilities`|Class Library containing the `MockBase` unit test base class|
    
-    To keep the Web API controllers clean, each request is handled by its own implementation of `IRequestHandler<>`. The deeper folder/file structure in `Musicalog.Core` is worth examining in this regard.
-
-
+    To keep the Web API controllers clean, each request is handled by its own implementation of `IRequestHandler<>`. This represents the biggest design decision pattern in how to organize the code. The deeper folder/file structure in `Musicalog.Core` is worth examining in this regard.
 
 1. **Unit tests**
 
     There wasn't time to add lots of unit tests. Instead, a single deep example is available in `AddAlbumCommandHandlerTests` (`Musicalog.Core.Tests` project). It includes a reusable implementation of auto-mocking in its base class that can be used in most unit tests. The base class is in project `Musicalog.TestUtilities`.
     
+1. **Middleware**
+
+   `NotFound` exceptions are handled automatically via middleware, which the repository base class throwing an exception as necessary. This makes the request handlers easier to unit test, because we only need to verify that the `SingleAsync` method is called.
+
+   We don't have to stop there. We could for example handle database key violations encounted when saving in the DbContext and return them as `409/Conflict`, with a bit of work.
+
+
 ## What's NOT included ##
 
 1. Paging hasn't been implemented.
 1. Authentication and authorization
 1. There would likely be much more shared code, probably in its own local project.
-1. SignalR
+1. SignalR: however, it's an example of a reason we might want to call repository methods indirectly via services that additionally make SignalR callbacks.
 1. Versioning support
 1. Automated end-to-end acceptance tests
-1. If the project's going to get big, we might consider using Domain Driven Design (DDD). Everyone involved needs to understand DDD for this to work.
+1. If the project's going to get big, we might consider using Domain Driven Design (DDD). But everyone involved needs to agree in order for this to work!
 1. Database normalization: we don't yet have much to go on, but at a minumum we'd expect the `Album` table to reference a separate Artist table.
