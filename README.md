@@ -24,7 +24,7 @@
    ```
     http://localhost:5000/swagger 
    ```
-    This includes the Try It Out feature.
+    Each endpoint has a **Try It Out** feature that can be used for testing.
 
 1. **Project structure**
 
