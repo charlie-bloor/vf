@@ -25,14 +25,13 @@ namespace Musicalog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllers();
             services.AddControllers()
                 .AddJsonOptions(options =>
                 {
                     // Ensure enums are sent/received as strings in DTOs
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(namingPolicy: null, allowIntegerValues: false));
                 })
-                // Shows enums as strings in Swagger
+                // Show enums as strings in Swagger
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.Converters.Add(new StringEnumConverter());
@@ -51,7 +50,7 @@ namespace Musicalog
             ValidatorOptions.Global.DisplayNameResolver = (type, member, expression) => member?.Name;
             services.AddSingleton<FluentValidationSchemaProcessor>();
             services.AddSingleton<IValidatorFactory, ServiceProviderValidatorFactory>();
-            
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddOpenApiDocument((settings, serviceProvider) =>
             {
                 settings.Title = "Musicalog API";
@@ -71,15 +70,10 @@ namespace Musicalog
             }
             
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseMiddleware<ExceptionHandlingMiddleware>();
-            
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-            
             app.UseOpenApi();
             app.UseSwaggerUi3();
         }
