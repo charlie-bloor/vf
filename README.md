@@ -43,6 +43,10 @@
 
    We don't have to stop there. We could for example handle database key violations encounted when saving in the DbContext and return them as `409/Conflict`, with a bit of work.
 
+1. **Validation**
+
+    Some validation has been implemented via the `FluentValidation` package. This is handled by custom middleware. For example, you can't add an album with an empty `Title` or set `Stock `to less than zero.
+
 
 ## Thoughts About What's NOT Included ##
 
