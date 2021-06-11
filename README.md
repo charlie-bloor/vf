@@ -37,7 +37,7 @@
    |`Musicalog.Domain`|Class Library containing entity types|
    |`Musicalog.TestUtilities`|Class Library containing the `MockBase` unit test base class|
    
-    To keep the Web API controllers clean, each request is handled by its own implementation of `IRequestHandler<>`. This represents the biggest design decision pattern in how to organize the code. The deeper folder/file structure in `Musicalog.Core` is worth examining in this regard.
+    To keep the Web API controllers clean, each request is handled by its own implementation of `IRequestHandler<>`. The deeper folder/file structure in `Musicalog.Core` is worth examining in this regard.
 
 1. **Unit tests**
 
