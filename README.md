@@ -53,4 +53,5 @@
 1. SignalR: however, it's an example of a reason we might want to call repository methods indirectly via services that additionally make SignalR callbacks.
 1. Versioning support
 1. Automated end-to-end acceptance tests
+1. Error handling for when we already have an artist/title (affects additions and updates).
 
