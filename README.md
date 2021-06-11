@@ -11,7 +11,7 @@
    Musicalog\Musicalog.Data\SqlScripts\CreateDatabase.sql
    ```
 
-   The database string is hardcoded for now as:
+   The database string is **hardcoded** for now as:
 
    ```
    Data Source=localhost;Initial Catalog=Musicalog;User Id=sa; Password=someThingComplicated1234;
@@ -45,9 +45,7 @@
     
 1. **Middleware**
 
-   `NotFound` exceptions are handled automatically via middleware, which the repository base class throwing an exception as necessary. This makes the request handlers easier to unit test, because we only need to verify that the `SingleAsync` method is called.
-
-   We don't have to stop there. We could for example handle database key violations encounted when saving in the DbContext and return them as `409/Conflict`, with a bit of work.
+   `NotFound` exceptions are handled automatically via middleware, which the repository base class throwing an exception as necessary. This makes the request handlers easier to unit test, because we only need to verify that the `SingleAsync` method is called. (We don't have to stop there. We could for example handle database key violations encounted when saving in the DbContext and return them as `409/Conflict`, with a bit of work.)
 
 1. **Validation**
 
@@ -58,11 +56,11 @@
 
 1. If the project's going to get *really* big, we might consider using Domain Driven Design (DDD). Everyone involved needs to agree in order for this to work.
 1. Database: we don't yet have much to go on, but at a minumum we'd expect the `Album` table to reference a separate Artist table. We also wouldn't hard-code the connection string!
-1. Authentication and authorization
+1. Authentication and authorization.
 1. There would likely be much more shared code, probably in its own local project.
 1. SignalR: however, it's an example of a reason we might want to call repository methods indirectly via services that additionally make SignalR callbacks.
-1. Versioning support
-1. Automated end-to-end acceptance tests
+1. Versioning support.
+1. Automated end-to-end acceptance tests.
 1. Error handling for when we already have an artist/title (affects additions and updates).
 1. Commits are absolutely ad hoc! Normally, we'd a expect a bit more organization as each PR is completed.
 
