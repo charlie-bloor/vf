@@ -6,7 +6,7 @@ namespace Musicalog.Core.Albums.Commands.UpdateAlbum
     {        
         [IgnoreDataMember]
         public int AlbumId { get; set; }
-        
+
         /// <summary>
         /// The Title of the Album
         /// </summary>

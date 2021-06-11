@@ -4,6 +4,10 @@ go
 use Musicalog
 go
 
+
+-- In a real application, we'd likely have the database in third normal form.
+-- Artist would probably have its own table, which Album would reference.
+
 create table Album
 (
     Id int identity

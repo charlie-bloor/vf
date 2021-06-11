@@ -30,6 +30,10 @@
    |`Musicalog.Domain`|Class Library containing entity types|
    |`Musicalog.TestUtilities`|Class Library containing the `MockBase` unit test base class|
    
+    To keep the Web API controllers clean, each request is handled by its own implementation of `IRequestHandler<>`. The deeper folder/file structure in `Musicalog.Core` is worth examining in this regard.
+
+
+
 1. **Unit tests**
 
     There wasn't time to add lots of unit tests. Instead, a single deep example is available in `AddAlbumCommandHandlerTests` (`Musicalog.Core.Tests` project). It includes a reusable implementation of auto-mocking in its base class that can be used in most unit tests. The base class is in project `Musicalog.TestUtilities`.
