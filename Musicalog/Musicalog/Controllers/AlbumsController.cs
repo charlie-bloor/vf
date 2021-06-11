@@ -36,9 +36,8 @@ namespace Musicalog.Controllers
         /// </summary>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<AlbumDto>>> GetAll()  // TODO: filter criteria
+        public async Task<ActionResult<List<AlbumDto>>> GetAll([FromQuery] GetAllAlbumsQuery query)
         {
-            var query = new GetAllAlbumsQuery();
             return Ok(await _getAllAlbumsRequestHandler.HandleAsync(query));
         }
 

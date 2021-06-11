@@ -1,10 +1,10 @@
 # Musicalog Music Store Catalog Web App
 
-## What's included
+## What's Included
 
 1. **Database**
 
-   By request, the database was created first. There is no EDMX in .NET Core but the models and context were auto-generated.
+   By request, the database was created first. There is no EDMX file in .NET Core, but the models and context were auto-generated using the `scafford` option of the `dotnet ef` command-line interface.
 
    The `Musicalog` database should be created using the one-and-only script available here:
    ```
@@ -44,13 +44,13 @@
    We don't have to stop there. We could for example handle database key violations encounted when saving in the DbContext and return them as `409/Conflict`, with a bit of work.
 
 
-## What's NOT included ##
+## Thoughts About What's NOT Included ##
 
-1. Paging hasn't been implemented.
+1. If the project's going to get *really* big, we might consider using Domain Driven Design (DDD). Everyone involved needs to agree in order for this to work.
+1. Database normalization: we don't yet have much to go on, but at a minumum we'd expect the `Album` table to reference a separate Artist table.
 1. Authentication and authorization
 1. There would likely be much more shared code, probably in its own local project.
 1. SignalR: however, it's an example of a reason we might want to call repository methods indirectly via services that additionally make SignalR callbacks.
 1. Versioning support
 1. Automated end-to-end acceptance tests
-1. If the project's going to get big, we might consider using Domain Driven Design (DDD). But everyone involved needs to agree in order for this to work!
-1. Database normalization: we don't yet have much to go on, but at a minumum we'd expect the `Album` table to reference a separate Artist table.
+

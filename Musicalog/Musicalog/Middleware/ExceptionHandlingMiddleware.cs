@@ -8,9 +8,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Musicalog.Core.Exceptions;
 using Musicalog.Data.Exceptions;
-using Musicalog.Extensions;
 
 namespace Musicalog.Middleware
 {
@@ -40,10 +38,6 @@ namespace Musicalog.Middleware
             catch (EntityNotFoundException ex)
             {
                 await HandleEntityNotFoundExceptionAsync(httpContext, ex);
-            }
-            catch (InvalidRequestException ex)
-            {
-                await HandleInvalidRequestExceptionAsync(httpContext, ex);
             }
             catch (Exception ex)
             {
@@ -88,25 +82,6 @@ namespace Musicalog.Middleware
             };
 
             // TODO: Log as warning
-
-            var json = JsonSerializer.Serialize(problemDetails);
-            return context.Response.WriteAsync(json);
-        }
-
-        private Task HandleInvalidRequestExceptionAsync(HttpContext context, InvalidRequestException exception)
-        {
-            context.Response.ContentType = ContentType;
-            context.Response.StatusCode = (int)exception.HttpStatusCode;
-        
-            var problemDetails = new ProblemDetails
-            {
-                Detail = exception.Message,
-                Status = (int)exception.HttpStatusCode,
-                Title = exception.InvalidRequestReason.GetDescription(),
-                Type = exception.InvalidRequestReason.ToString()
-            };
-        
-            // TODO: Log as error
 
             var json = JsonSerializer.Serialize(problemDetails);
             return context.Response.WriteAsync(json);

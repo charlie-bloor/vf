@@ -22,8 +22,7 @@ namespace Musicalog.Core.Albums.Queries.GetAllAlbums
         
         public async Task<List<AlbumDto>> HandleAsync(GetAllAlbumsQuery request)
         {
-            // TODO: filter
-            var albums = await _albumRepository.GetAllAsync();
+            var albums = await _albumRepository.GetByArtistAndTitleAsync(request.Artist, request.Title);
             return albums.Select(_albumEntityToDtoConverter.Convert).ToList();
         }
     }
