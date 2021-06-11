@@ -42,8 +42,9 @@
 
 1. Paging hasn't been implemented.
 1. Authentication and authorization
-1. There would likely more shared code, probably in its own local project.
+1. There would likely be much more shared code, probably in its own local project.
 1. SignalR
 1. Versioning support
 1. Automated end-to-end acceptance tests
-1. If we think the project's going to be very large, and everyone agrees, we could consider using Domain Driven Design.
+1. If the project's going to get big, we might consider using Domain Driven Design (DDD). Everyone involved needs to understand DDD for this to work.
+1. Database normalization: we don't yet have much to go on, but at a minumum we'd expect the `Album` table to reference a separate Artist table.
