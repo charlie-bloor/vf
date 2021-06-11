@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Musicalog.Core.Extensions;
 using Musicalog.Data.Extensions;
+using Newtonsoft.Json.Converters;
 using ZymLabs.NSwag.FluentValidation;
 
 namespace Musicalog
@@ -22,10 +24,25 @@ namespace Musicalog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            //services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    // Ensure enums are sent/received as strings in DTOs
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(namingPolicy: null, allowIntegerValues: false));
+                })
+                // Shows enums as strings in Swagger
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                });
+            
             services.AddConverters();
             services.AddValidators();
+            
+            // TODO: we wouldn't normally just include the connection string here!
             services.AddDataAccess("Data Source=localhost;Initial Catalog=Musicalog;User Id=sa; Password=someThingComplicated1234;");
+            
             services.AddCoreServices();
             services.AddHandlers();
             

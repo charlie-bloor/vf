@@ -13,10 +13,12 @@ create table Album
     Id int identity
         constraint Album_pk
         primary key nonclustered,
-    Title varchar(256) not null,
-    ArtistName varchar(256) not null,
+    ArtistName varchar(128) not null,
+    MediaType varchar(128) not null,
     Stock int not null,
+    Title varchar(128) not null,
     constraint UIX_Title_ArtistName
         unique (Title, ArtistName)
 )
     go
+

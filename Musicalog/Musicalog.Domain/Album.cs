@@ -8,5 +8,6 @@ namespace Musicalog.Domain
         public string Title { get; set; }
         public string ArtistName { get; set; }
         public int Stock { get; set; }
+        public MediaType MediaType { get; set; }
     }
 }

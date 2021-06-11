@@ -38,9 +38,9 @@ namespace Musicalog.Core.Services
             // TODO: e.g. issue 'AlbumRemoved' SignalR callback
         }
 
-        public Task UpdateAsync(Album entity)
+        public async Task UpdateAsync(Album entity)
         {
-            throw new System.NotImplementedException();
+            await _albumRepository.UpdateAsync(entity);
             // TODO: e.g. issue 'AlbumUpdated' SignalR callback
         }
     }

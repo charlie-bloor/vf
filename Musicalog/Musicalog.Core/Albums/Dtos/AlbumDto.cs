@@ -1,3 +1,5 @@
+using Musicalog.Domain;
+
 namespace Musicalog.Core.Albums.Dtos
 {
     public class AlbumDto
@@ -21,5 +23,10 @@ namespace Musicalog.Core.Albums.Dtos
         /// The number of albums currently in stock
         /// </summary>
         public int Stock { get; set; }
+        
+        /// <summary>
+        /// The type of media e.g. CD or Vinyl
+        /// </summary>
+        public MediaType MediaType { get; set; }        
     }
 }

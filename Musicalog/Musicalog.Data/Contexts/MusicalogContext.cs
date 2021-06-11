@@ -56,6 +56,14 @@ namespace Musicalog.Data.Contexts
                     .IsRequired()
                     .HasMaxLength(256)
                     .IsUnicode(false);
+                
+                // Store the MediaType enum as a string in the database
+                // to allow adding an enum type more easily.
+                // We could instead store this as an integer
+                // if we were more interested in performance.
+                modelBuilder.Entity<Album>()
+                    .Property(s => s.MediaType)
+                    .HasConversion<string>();
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -16,7 +16,8 @@ namespace Musicalog.Core.Albums.Converters
             {
                 Stock = value.Stock,
                 Title = value.Title,
-                ArtistName = value.ArtistName
+                ArtistName = value.ArtistName,
+                MediaType = value.MediaType
             };
         }
 
@@ -27,7 +28,8 @@ namespace Musicalog.Core.Albums.Converters
                 Id = value.Id,
                 Stock = value.Stock,
                 Title = value.Title,
-                ArtistName = value.ArtistName
+                ArtistName = value.ArtistName,
+                MediaType = value.MediaType
             };
         }
 
@@ -36,6 +38,7 @@ namespace Musicalog.Core.Albums.Converters
             target.Stock = source.Stock;
             target.Title = source.Title;
             target.ArtistName = source.ArtistName;
+            target.MediaType = source.MediaType;
         }
     }
 }

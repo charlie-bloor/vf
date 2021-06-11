@@ -40,7 +40,7 @@
     
 ## What's NOT included ##
 
-1. The `Type` is missing on the Album! (Sorry!)
+1. Paging hasn't been implemented.
 1. Authentication and authorization
 1. There would likely more shared code, probably in its own local project.
 1. SignalR

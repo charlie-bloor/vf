@@ -1,3 +1,5 @@
+using Musicalog.Domain;
+
 namespace Musicalog.Core.Albums.Commands.AddAlbum
 {
     public class AddAlbumCommand
@@ -16,5 +18,10 @@ namespace Musicalog.Core.Albums.Commands.AddAlbum
         /// The number of albums currently in stock
         /// </summary>
         public int Stock { get; set; }
+        
+        /// <summary>
+        /// The type of media e.g. CD or Vinyl
+        /// </summary>
+        public MediaType MediaType { get; set; }
     }
 }
