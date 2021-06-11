@@ -34,12 +34,7 @@ namespace Musicalog.Core.Extensions
             {
                 scan.FromAssemblies(executingAssembly)
                     
-                    .AddClasses(classes => classes.AssignableToAny(typeof(IConverter<,>),
-                                                                   typeof(IConverter<,,>),
-                                                                   typeof(IConverter<,,,>),
-                                                                   typeof(IConverter<,,,,>),
-                                                                   typeof(IConverter<,,,,,>),
-                                                                   typeof(IUpdater<,>)))
+                    .AddClasses(classes => classes.AssignableToAny(typeof(IConverter<,>)))
                     .AsImplementedInterfaces()
                     .WithTransientLifetime();
             });
