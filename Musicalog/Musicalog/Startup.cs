@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Musicalog.Core.Extensions;
 using Musicalog.Data.Extensions;
+using Musicalog.Middleware;
 using Newtonsoft.Json.Converters;
 using ZymLabs.NSwag.FluentValidation;
 
@@ -75,6 +76,8 @@ namespace Musicalog
 
             app.UseAuthorization();
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+            
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
             
             app.UseOpenApi();
