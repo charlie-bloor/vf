@@ -36,9 +36,10 @@
     
 ## What's NOT included ##
 
-1. The `Type` is missing on the Album.
+1. The `Type` is missing on the Album! (Sorry!)
 1. Authentication and authorization
 1. There would likely more shared code, probably in its own local project.
 1. SignalR
-1. Versioning
+1. Versioning support
 1. Automated end-to-end acceptance tests
+1. If we think the project's going to be very large, and everyone agrees, we could consider using Domain Driven Design.

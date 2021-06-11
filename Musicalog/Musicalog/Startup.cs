@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -5,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Musicalog.Core.Extensions;
 using Musicalog.Data.Extensions;
+using ZymLabs.NSwag.FluentValidation;
 
 namespace Musicalog
 {
@@ -27,13 +29,18 @@ namespace Musicalog
             services.AddCoreServices();
             services.AddHandlers();
             
+            // Add support FluentValidation to show up in Swagger output
+            ValidatorOptions.Global.DisplayNameResolver = (type, member, expression) => member?.Name;
+            services.AddSingleton<FluentValidationSchemaProcessor>();
+            services.AddSingleton<IValidatorFactory, ServiceProviderValidatorFactory>();
+            
             services.AddOpenApiDocument((settings, serviceProvider) =>
             {
                 settings.Title = "Musicalog API";
 
                 // Add the FluentValidation schema processor
-                // var fluentValidationSchemaProcessor = serviceProvider.GetService<FluentValidationSchemaProcessor>();
-                //settings.SchemaProcessors.Add(fluentValidationSchemaProcessor);
+                 var fluentValidationSchemaProcessor = serviceProvider.GetService<FluentValidationSchemaProcessor>();
+                settings.SchemaProcessors.Add(fluentValidationSchemaProcessor);
             });
         }
 
