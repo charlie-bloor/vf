@@ -39,10 +39,7 @@ namespace Musicalog
             
             services.AddConverters();
             services.AddValidators();
-            
-            // TODO: we wouldn't normally just include the connection string here!
-            services.AddDataAccess("Data Source=localhost;Initial Catalog=Musicalog;User Id=sa; Password=someThingComplicated1234;");
-            
+            services.AddDataAccess(Configuration.GetConnectionString("Musicalog"));
             services.AddCoreServices();
             services.AddHandlers();
             

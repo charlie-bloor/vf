@@ -11,7 +11,7 @@
    Musicalog\Musicalog.Data\SqlScripts\CreateDatabase.sql
    ```
 
-   The database string is **hardcoded** for now as:
+   The `Musicalog` database string is in the `appsettings.json` file. It has an initial value of:
 
    ```
    Data Source=localhost;Initial Catalog=Musicalog;User Id=sa; Password=someThingComplicated1234;
@@ -19,7 +19,7 @@
 
 1. **Test harness**
 
-   When the main `Musicalog` project is running a Swagger UI is available here:
+   When the main `Musicalog` project is running, a Swagger UI is available at:
 
    ```
     http://localhost:5000/swagger 
@@ -55,7 +55,7 @@
 ## Thoughts About What's NOT Included ##
 
 1. If the project's going to get *really* big, we might consider using Domain Driven Design (DDD). Everyone involved needs to agree in order for this to work.
-1. Database: we don't yet have much to go on, but at a minumum we'd expect the `Album` table to reference a separate Artist table. We also wouldn't hard-code the connection string!
+1. Database: we don't yet have much to go on, but at a minumum we'd expect the `Album` table to reference a separate Artist table. An album could be by multiple artists, in which case we'd need an `ArtistsAlbums` junction table.
 1. Authentication and authorization.
 1. There would likely be much more shared code, probably in its own local project.
 1. SignalR: however, it's an example of a reason we might want to call repository methods indirectly via services that additionally make SignalR callbacks.
